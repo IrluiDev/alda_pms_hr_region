@@ -1,0 +1,47 @@
+<odoo>
+    <record id="view_pms_property_region_assignment_form" model="ir.ui.view">
+        <field name="name">pms.property.region.assignment.form</field>
+        <field name="model">pms.property.region.assignment</field>
+        <field name="arch" type="xml">
+            <form string="PMS Property Region Assignment">
+                <sheet>
+                    <group>
+                        <field name="region_id"/>
+                        <field name="pms_property_id"/>
+                    </group>
+                    <group>
+                        <field name="position1_id"/>
+                        <field name="employee1_id"/>
+                    </group>
+                    <group>
+                        <field name="position2_id"/>
+                        <field name="employee2_id"/>
+                    </group>
+                    <group>
+                        <field name="position3_id"/>
+                        <field name="employee3_id"/>
+                    </group>
+                    <group>
+                        <field name="position4_id"/>
+                        <field name="employee4_id"/>
+                    </group>
+                    <group>
+                        <field name="position5_id"/>
+                        <field name="employee5_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pms_property_region_assignment_tree" model="ir.ui.view">
+        <field name="name">pms.property.region.assignment.tree</field>
+        <field name="model">pms.property.region.assignment</field>
+        <field name="arch" type="xml">
+            <tree string="PMS Property Region Assignment">
+                <field name="region_id"/>
+                <field name="pms_property_id"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

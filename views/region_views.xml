@@ -1,0 +1,81 @@
+<odoo>
+    <record id="view_region_form" model="ir.ui.view">
+        <field name="name">region.form</field>
+        <field name="model">pms.property.region</field>
+        <field name="arch" type="xml">
+            <form string="Region">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="Properties">
+                            <field name="pms_property_ids">
+                                <tree>
+                                    <field name="pms_property_id"/>
+                                    <field name="position1_id"/>
+                                    <field name="employee1_id"/>
+                                    <field name="position2_id"/>
+                                    <field name="employee2_id"/>
+                                    <field name="position3_id"/>
+                                    <field name="employee3_id"/>
+                                    <field name="position4_id"/>
+                                    <field name="employee4_id"/>
+                                    <field name="position5_id"/>
+                                    <field name="employee5_id"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="pms_property_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="position1_id"/>
+                                        <field name="employee1_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="position2_id"/>
+                                        <field name="employee2_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="position3_id"/>
+                                        <field name="employee3_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="position4_id"/>
+                                        <field name="employee4_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="position5_id"/>
+                                        <field name="employee5_id"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_region_tree" model="ir.ui.view">
+        <field name="name">region.tree</field>
+        <field name="model">pms.property.region</field>
+        <field name="arch" type="xml">
+            <tree string="Region">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_pms_property_management" name="PMS Property Management"/>
+
+    <menuitem id="menu_region_management" name="Regions" parent="menu_pms_property_management"/>
+
+    <menuitem id="menu_regions" name="Regions" parent="menu_region_management" action="action_region"/>
+
+    <record id="action_region" model="ir.actions.act_window">
+        <field name="name">Regions</field>
+        <field name="res_model">pms.property.region</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
