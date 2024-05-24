@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_region_form" model="ir.ui.view">
         <field name="name">region.form</field>
@@ -6,11 +7,12 @@
             <form string="Region">
                 <sheet>
                     <group>
-                        <field name="name"/>
+                        <field name="cod_region"/>
+                        <field name="employee_id"/>
                     </group>
                     <notebook>
                         <page string="Properties">
-                            <field name="pms_property_ids">
+                            <field name="property_region_ids">
                                 <tree>
                                     <field name="pms_property_id"/>
                                     <field name="position1_id"/>
@@ -57,25 +59,40 @@
         </field>
     </record>
 
+    <!-- Tree view for pms.property.region -->
     <record id="view_region_tree" model="ir.ui.view">
         <field name="name">region.tree</field>
         <field name="model">pms.property.region</field>
         <field name="arch" type="xml">
-            <tree string="Region">
-                <field name="name"/>
-            </tree>
+                <field name="employee_id"/>
+                <field
+                    name="property_region_ids"
+                    options="{'no_create_edit': 1}"
+                >
+                <tree>
+                    <field name="region_id"/>
+                    <field name="pms_property_id" widget="many2many_tags" 
+                        options="{'no_create_edit': 1}" groups="base.group_no_one">
+                    </field>
+                </tree>
+            </field>
         </field>
     </record>
 
-    <menuitem id="menu_pms_property_management" name="PMS Property Management"/>
 
-    <menuitem id="menu_region_management" name="Regions" parent="menu_pms_property_management"/>
-
-    <menuitem id="menu_regions" name="Regions" parent="menu_region_management" action="action_region"/>
-
+    <!-- Action for pms.property.region -->
     <record id="action_region" model="ir.actions.act_window">
         <field name="name">Regions</field>
         <field name="res_model">pms.property.region</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+    <!-- Menuitem in PMS Property Management -->
+    <menuitem id="menu_pms_property_management" name="PMS Property Management"/>
+
+    <!-- Submenu for Regions -->
+    <menuitem id="menu_region_management" name="Regions" parent="menu_pms_property_management" action="action_region"/>
+
+    <!-- New Menu for Settings under Users & Companies -->
+    <menuitem id="menu_region_settings" name="Region Settings" parent="base.menu_users" action="action_region"/>
 </odoo>
