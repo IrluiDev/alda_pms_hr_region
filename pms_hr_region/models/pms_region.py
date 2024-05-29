@@ -4,11 +4,13 @@ class Region(models.Model):
     _name = 'pms.property.region'
     _description = 'PMS Property Region'
 
-    cod_region = fields.Char(string='Region Code', compute='_compute_region_code', store=True)
-    #employee_id = fields.Many2one('hr.employee', string='Regional Manager', domain="[('job_id', '=', position1_id)]")
-    employee_id = fields.Many2one('hr.employee', string='Regional Manager', store=True)
-    #company_ids = fields.Many2many('res.company', string='Companies')
-    property_region_ids = fields.One2many('pms.property.region.assignment', 'region_id', string='Properties', store=True)
+    cod_region = fields.Char(string='Region Code', compute='_compute_region_code', store=True, ondelete='cascade')
+    employee_id = fields.Many2one(
+        'hr.employee', 
+        string='Regional Manager', 
+        store=True, 
+        domain="[('job_id', '=', 9)]")
+    property_cod_regions = fields.One2many('pms.property.region.assignment', 'cod_region', string='Region & Employees to Properties', store=True, ondelete='cascade')
 
     @api.depends('employee_id')
     def _compute_region_code(self):
